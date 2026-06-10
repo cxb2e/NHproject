@@ -1,15 +1,12 @@
 body {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #fce4ec; /* Light pink background */
-  font-family: "Great Vibes", cursive;
-  overflow: hidden;
-  margin: 0;
-  position: relative; /* Needed for hearts container */
+  align-items: flex-start;
+  min-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 40px 0;
 }
-
 .hearts-container {
   position: absolute;
   top: 0;
@@ -84,11 +81,11 @@ body {
 
 
 .main-content {
-  background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent */
-  padding: 40px 60px;
+  background-color: rgba(255,255,255,0.95);
+  padding: 30px 40px;
   border-radius: 20px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  position: relative; /* Needed for the button positioning context */
+  max-width: 850px;
+  width: 90%;
 }
 
 .question {
@@ -130,10 +127,9 @@ button {
 }
 
 #noBtn {
-  background-color: #e0e0e0; /* Light gray */
+  background-color: #e0e0e0;
   color: #333;
-  position: fixed; /* Use fixed to position relative to viewport */
-  transition: all 0.2s ease-in-out; /* Smoother movement */
+  transition: all 0.2s ease-in-out;
 }
 
 .hidden {
@@ -328,4 +324,98 @@ button {
     cursor: pointer;
     background-color: white;
     font-family: 'Poppins', sans-serif;
+}
+.contract-title{
+    font-family: "Poppins", sans-serif;
+    font-size: 25px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.contract-content{
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
+    color: #333;
+    line-height: 1.8;
+    text-align: left;
+    max-width: 700px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+  body {
+    padding: 20px 10px;
+  }
+
+  .main-content {
+    width: 95%;
+    padding: 20px;
+    border-radius: 15px;
+  }
+
+  .contract-title {
+    font-size: 32px;
+    margin-bottom: 15px;
+  }
+
+  .contract-content {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .buttons {
+    flex-direction: row;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  button {
+    padding: 12px 18px;
+    font-size: 16px;
+  }
+
+  #response {
+    width: 90%;
+    margin: 20px auto;
+    font-size: 22px;
+    line-height: 1.6;
+  }
+
+  .envelope {
+    width: 250px;
+    height: 170px;
+  }
+
+  .envelope::before {
+    border-top: 85px solid #ff4081;
+    border-left: 125px solid transparent;
+    border-right: 125px solid transparent;
+  }
+
+  .envelope::after {
+    border-width: 85px 125px 0 125px;
+  }
+}
+
+/* iPhone SE và máy nhỏ */
+@media (max-width: 480px) {
+
+  .contract-title {
+    font-size: 26px;
+  }
+
+  .contract-content {
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 15px;
+    padding: 10px 16px;
+  }
+
+  #response {
+    font-size: 18px;
+  }
 }

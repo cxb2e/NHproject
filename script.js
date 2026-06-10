@@ -108,17 +108,12 @@ yesBtn.addEventListener('click', () => {
 });
 
 function moveNoButton() {
-    const noBtnRect = noBtn.getBoundingClientRect();
-
-    const maxX = window.innerWidth - noBtnRect.width;
-    const maxY = window.innerHeight - noBtnRect.height;
-
-    const randomX = Math.floor(Math.random() * maxX);
-    const randomY = Math.floor(Math.random() * maxY);
+    const maxX = window.innerWidth - 120;
+    const maxY = window.innerHeight - 60;
 
     noBtn.style.position = 'fixed';
-    noBtn.style.left = randomX + 'px';
-    noBtn.style.top = randomY + 'px';
+    noBtn.style.left = Math.random() * maxX + 'px';
+    noBtn.style.top = Math.random() * maxY + 'px';
 }
 
 noBtn.addEventListener('mouseover', moveNoButton); // PC
@@ -126,6 +121,7 @@ noBtn.addEventListener('mouseover', moveNoButton); // PC
 noBtn.addEventListener('touchstart', (e) => {
     e.preventDefault();
     moveNoButton();
+    passive: false;
 }); // Điện thoại
 
 createFlyingHearts();
