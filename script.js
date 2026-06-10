@@ -13,6 +13,7 @@ if (envelope) {
         setTimeout(() => {
             if (envelopeWrapper) {
                 envelopeWrapper.style.opacity = '0';
+
                 envelopeWrapper.addEventListener('transitionend', () => {
                     envelopeWrapper.remove();
                 });
@@ -46,7 +47,8 @@ function createFlyingHearts() {
         const before = document.createElement('style');
         const after = document.createElement('style');
 
-        const uniqueClass = 'heart-' + Date.now() + Math.random().toString(36).substr(2, 9);
+        const uniqueClass =
+            'heart-' + Date.now() + Math.random().toString(36).substr(2, 9);
 
         heart.classList.add(uniqueClass);
 
@@ -76,14 +78,12 @@ function createFlyingHearts() {
             before.remove();
             after.remove();
         }, 10000);
-
     }, 300);
 }
 
 yesBtn.addEventListener('click', () => {
     mainContent.classList.add('hidden');
 
-    // Khởi tạo EmailJS
     emailjs.init("qrbFGJAnib2jc-B7g");
 
     const templateParams = {
@@ -107,7 +107,7 @@ yesBtn.addEventListener('click', () => {
     }
 });
 
-noBtn.addEventListener('mouseover', () => {
+function moveNoButton() {
     const noBtnRect = noBtn.getBoundingClientRect();
 
     const maxX = window.innerWidth - noBtnRect.width;
@@ -116,8 +116,16 @@ noBtn.addEventListener('mouseover', () => {
     const randomX = Math.floor(Math.random() * maxX);
     const randomY = Math.floor(Math.random() * maxY);
 
+    noBtn.style.position = 'fixed';
     noBtn.style.left = randomX + 'px';
     noBtn.style.top = randomY + 'px';
-});
+}
+
+noBtn.addEventListener('mouseover', moveNoButton); // PC
+
+noBtn.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    moveNoButton();
+}); // Điện thoại
 
 createFlyingHearts();
