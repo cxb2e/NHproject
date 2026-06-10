@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Be My Everyday</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="envelope-wrapper">
+      <div id="envelope" class="envelope">
+        <div class="heart-seal"></div>
+      </div>
+    </div>
+
+    <div class="hearts-container"></div>
+    <div class="container hidden">
+      <div class="main-content">
+        <p class="question">Síp Hân đồng ý với kế hoạch của anh nhóe?</p>
+        <div class="buttons">
+          <button id="yesBtn">Duyệt</button>
+          <button id="noBtn">Không</button>
+        </div>
+      </div>
+      <div id="response" class="hidden">
+        <p>
+          Cảm ơn Síp Hân đã đồng ý, anh sẽ gửi kế hoạch ngay cho Síp nhóe ❤️
+        </p>
+      </div>
+    </div>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+    ></script>
+    <script src="script.js"></script>
+  </body>
+</html>

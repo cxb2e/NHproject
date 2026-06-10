@@ -1,0 +1,331 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #fce4ec; /* Light pink background */
+  font-family: "Great Vibes", cursive;
+  overflow: hidden;
+  margin: 0;
+  position: relative; /* Needed for hearts container */
+}
+
+.hearts-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.heart {
+  position: absolute;
+  bottom: -50px; /* Start below the screen */
+  background-color: red;
+  width: 20px;
+  height: 20px;
+  opacity: 0.7;
+  animation: fly 10s linear infinite;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -10px;
+  left: 0;
+}
+
+.heart::after {
+  top: 0;
+  left: 10px;
+}
+
+@keyframes fly {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-110vh) translateX(calc(var(--random-x) * 100px))
+      rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@keyframes beat {
+  0%, 100% {
+    transform: translate(-50%, -70%) rotate(45deg) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -70%) rotate(45deg) scale(1.15);
+  }
+}
+
+.container {
+  text-align: center;
+  position: relative;
+  z-index: 1; /* Ensure content is above hearts */
+}
+
+.container.hidden {
+    display: none;
+}
+
+
+
+.main-content {
+  background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent */
+  padding: 40px 60px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  position: relative; /* Needed for the button positioning context */
+}
+
+.question {
+  font-size: 70px;
+  color: #333;
+  margin-bottom: 30px;
+  text-shadow:
+    0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 192, 203, 0.8);
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#yesBtn {
+  background-color: #ff80ab; /* Pink */
+  color: white;
+}
+
+#yesBtn:hover {
+  background-color: #ff4081; /* Darker pink */
+  transform: scale(1.1);
+}
+
+#yesBtn:active {
+  transform: scale(1.05);
+}
+
+#noBtn {
+  background-color: #e0e0e0; /* Light gray */
+  color: #333;
+  position: fixed; /* Use fixed to position relative to viewport */
+  transition: all 0.2s ease-in-out; /* Smoother movement */
+}
+
+.hidden {
+  display: none;
+}
+
+#response {
+  margin-top: 20px;
+  font-size: 32px; /* Larger font for the final message */
+  color: #ff4081;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* For confetti effect */
+
+/* Envelope Styles */
+.envelope-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fce4ec;
+    z-index: 100;
+    transition: opacity 1s ease-out;
+}
+
+.envelope {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background-color: #ff80ab;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.5s ease-in-out;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.envelope::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-top: 100px solid #ff4081;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    transform-origin: top;
+    transition: transform 0.5s 0.5s ease-in-out;
+    z-index: 3;
+}
+
+.envelope.open::before {
+    transform: rotateX(180deg);
+}
+
+.envelope::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 100px 150px 0 150px;
+    border-color: #ff80ab transparent transparent transparent;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.letter {
+    position: absolute;
+    top: 0;
+    left: 5%;
+    width: 90%;
+    height: 95%;
+    background-color: white;
+    border-radius: 5px;
+    z-index: 2;
+    transition: transform 0.5s 0.5s ease-in-out;
+    transform: translateY(180px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.envelope.open .letter {
+    transform: translateY(0px);
+    opacity: 1;
+}
+
+.letter-text {
+    font-size: 18px;
+    color: #333;
+}
+
+.heart-seal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -70%) rotate(45deg);
+    width: 40px;
+    height: 40px;
+    background-color: #e91e63;
+    z-index: 4;
+    transition: opacity 0.5s;
+    animation: beat 1.5s infinite ease-in-out;
+}
+
+.heart-seal:before,
+.heart-seal:after {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #e91e63;
+}
+
+.heart-seal:before {
+    top: -20px;
+    left: 0;
+}
+
+.heart-seal:after {
+    top: 0;
+    left: -20px;
+}
+
+.envelope.open .heart-seal {
+    opacity: 0;
+}
+
+/* Date Form Styles */
+#date-form-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 40px 60px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.form-title {
+    font-size: 28px;
+    color: #ff4081;
+    margin-bottom: 20px;
+}
+
+#date-picker {
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #ff80ab;
+    font-size: 16px;
+    /* margin-bottom: 20px; */ /* Removed to align with flexbox */
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+}
+
+#submitDateBtn {
+    background-color: #ff80ab;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#submitDateBtn:hover {
+    background-color: #ff4081;
+}
+
+.form-inputs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+#session-picker {
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #ff80ab;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+}
